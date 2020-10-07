@@ -1,0 +1,19 @@
+{
+  "name": "dragonli-node-service-wx-redirect",
+  "version": "1.0.0",
+  "description": "node web service just for wx redirect",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --use-strict --harmony ./app"
+  },
+  "keywords": [
+    "node",
+    "web Service",
+    "framework"
+  ],
+  "author": "dragonli-people",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "dragonli-node-general-service-core": "0.9.14"
+  }
+}
