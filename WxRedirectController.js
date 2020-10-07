@@ -35,7 +35,7 @@ class  WxRedirectController{
 
     async wxRedirect(){
         list = list.filter(v=>Math.abs(Date.now()-v.time)<30*60*60*1000)
-        console.log('===info',this.paras.info);
+        // console.log('===info',this.paras.info);
         var time = Date.now(),info = JSON.parse( Crypto.cbcDecrypt(`${this.paras.info}`,wx_redirect_proxy_key,wx_redirect_proxy_iv) );
         var {url,appId,secret,is_base} = info;
         list.push({id: ++bigId,url,time});
@@ -51,7 +51,7 @@ class  WxRedirectController{
         url = url.replace(/\?$/gi,'');
         url = url.replace(/\&$/gi,'');
         url = url.indexOf('?') >= 0 ? `${url}&code=${code}` : `${url}?code=${code}`;
-        console.log('==code==','bigId:[',id,'],code:[',code,'],url:[',url,']');
+        // console.log('==code==','bigId:[',id,'],code:[',code,'],url:[',url,']');
         this.response.writeHead(302, {'Location': url});
         this.response.end();
         // return {code,id,url}
@@ -59,7 +59,7 @@ class  WxRedirectController{
 
     async test(){
         var {code,id} = this.paras;
-        console.log('==code==','code:[',code,'],id:[',id,']');
+        // console.log('==code==','code:[',code,'],id:[',id,']');
         return {code,id}
     }
 }
