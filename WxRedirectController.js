@@ -1,4 +1,4 @@
-const Crypto = require('dragonli-node-tools');
+const {Crypto} = require('dragonli-node-tools');
 const crypto = require('crypto');
 const WxHandler = require('./WxHandler');
 
