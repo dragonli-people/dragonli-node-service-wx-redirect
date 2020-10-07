@@ -1,7 +1,8 @@
 const {Crypto} = require('dragonli-node-tools');
-const crypto = require('crypto');
 const WxHandler = require('./WxHandler');
 
+/* ======== */
+const crypto = require('crypto');
 Crypto.cbcEncrypt = function(dataStr, key, iv) {
     let cipherChunks = [];
     let cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
@@ -19,6 +20,7 @@ Crypto.cbcDecrypt = function(dataStr, key, iv) {
     cipherChunks.push(decipher.final('utf8'));
     return cipherChunks.join('');
 }
+/* ======== */
 
 const wx_redirect_proxy_key = process.env.WX_REDIRECT_PROXY_KEY || '0123456789abcdef',
     wx_redirect_proxy_iv = process.env.WX_REDIRECT_PROXY_IV || 'fedcba9876543210';
