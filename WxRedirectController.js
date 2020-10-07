@@ -21,7 +21,7 @@ Crypto.cbcDecrypt = function(dataStr, key, iv) {
 }
 
 const wx_redirect_proxy_key = process.env.WX_REDIRECT_PROXY_KEY || '0123456789abcdef',
-    wx_redirect_proxy_iv = process.env.WX_REDIRECT_PROXY_KEY || 'fedcba9876543210';
+    wx_redirect_proxy_iv = process.env.WX_REDIRECT_PROXY_IV || 'fedcba9876543210';
 const wx_redirect_proxy_host = process.env.WX_REDIRECT_PROXY_HOST || 'http://redirect.wx.carryforward.cn';
 
 /*
