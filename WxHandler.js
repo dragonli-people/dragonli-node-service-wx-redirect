@@ -72,6 +72,7 @@ class WxHandler{
         return data;
     }
 
+
     async wxTicket(){
         var {access_token} = await this.getGeneralToken();
         console.log('===access_token====',access_token);

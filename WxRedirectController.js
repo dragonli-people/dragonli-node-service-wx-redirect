@@ -67,7 +67,7 @@ class  WxRedirectController{
 
     async test(){
         var wxHandler = new WxHandler(wxAppId,wxSecret);
-        var link = this.paras.url && `http://redirect.wx.carryforward.cn/url?info=${decodeURIComponent(this.paras.url)}` ||'';
+        var link = this.paras.url && `http://redirect.wx.carryforward.cn/test1`; //?info=${encodeURIComponent(this.paras.url)}` ||'';
         var result = link && await wxHandler.wxSign(link) || {appId:'',timestamp:'',nonceStr:'',signature:'',url:'',link:''};
         result.appId = wxAppId;
         result.url = this.paras.url;
@@ -88,6 +88,10 @@ class  WxRedirectController{
         this.response.writeHead(302, {'Location': this.paras.info});
         this.response.end();
     }
+
+    async test1(){
+        return {a:2,b:2}
+    }
 }
 
 module.exports = [
@@ -96,5 +100,6 @@ module.exports = [
     {url:'/callback',clz:WxRedirectController,method:'callback'},
     {url:'/test',clz:WxRedirectController,method:'test',template:'test.ejs'},
     {url:'/url',clz:WxRedirectController,method:'url'},
+    {url:'/test1',clz:WxRedirectController,method:'test1'},
 
 ];
