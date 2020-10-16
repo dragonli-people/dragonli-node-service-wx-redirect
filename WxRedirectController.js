@@ -25,8 +25,7 @@ Crypto.cbcDecrypt = function(dataStr, key, iv) {
 const wx_redirect_proxy_key = process.env.WX_REDIRECT_PROXY_KEY || '0123456789abcdef',
     wx_redirect_proxy_iv = process.env.WX_REDIRECT_PROXY_IV || 'fedcba9876543210';
 const wx_redirect_proxy_host = process.env.WX_REDIRECT_PROXY_HOST || 'http://redirect.wx.carryforward.cn';
-const wxAppId = process.env.WX_APP_ID || 'wx6f2921719a3bc12b',wxSecret = process.env.WX_SECRET || 'adf3a42039bd475d4aed6aa86385218a',
-    wxOfficialAccount = process.env.WX_OFFICIAL_ACCOUNT || 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI4MzYzMjc4Ng==&scene=110#wechat_redirect';
+const wxAppId = process.env.WX_APP_ID || 'wx23a732fdacf2009a',wxSecret = process.env.WX_SECRET || '9d0d216d912a069b5a185822cc73a92d';
 
 /*
 console.log('http://redirect.wx.carryforward.cn/redirect?info='+encodeURIComponent(Crypto.cbcEncrypt(
