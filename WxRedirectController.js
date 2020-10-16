@@ -68,7 +68,7 @@ class  WxRedirectController{
     async test(){
         var wxHandler = new WxHandler(wxAppId,wxSecret);
         var link = this.paras.url && `http://redirect.wx.carryforward.cn/url?info=${decodeURIComponent(this.paras.url)}` ||'';
-        var result = url && await wxHandler.wxSign(link) || {appId:'',timestamp:'',nonceStr:'',signature:'',url:'',link:''};
+        var result = link && await wxHandler.wxSign(link) || {appId:'',timestamp:'',nonceStr:'',signature:'',url:'',link:''};
         result.appId = wxAppId;
         result.url = this.paras.url;
         result.link = link;
