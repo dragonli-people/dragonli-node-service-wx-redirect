@@ -144,7 +144,9 @@ class WxHandler{
             timestamp: createTimestamp(),
             url,
         };
-        ret.signature = (new jssha(raw(ret), 'TEXT')).getHash('SHA-1', 'HEX');
+        var ret1 = raw(ret);
+        ret.signature = (new jssha(ret1, 'TEXT')).getHash('SHA-1', 'HEX');
+        console.log('==ret',ret1,ret.signature);
         return ret;
     };
 }
