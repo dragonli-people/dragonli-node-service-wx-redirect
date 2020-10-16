@@ -71,6 +71,7 @@ class  WxRedirectController{
         var result = this.paras.url && wxHandler.wxSign(this.paras.url) || {appId:'',timestamp:'',nonceStr:'',signature:''};
         result.appId = wxAppId;
         result.url = this.paras.url;
+        result.link = this.paras.url && `http://redirect.wx.carryforward.cn/url?info=${decodeURIComponent(this.paras.url)}` ||''
         console.log('===result=',result);
         return result;
         // appId: '<%=appId%>', // 必填，公众号的唯一标识

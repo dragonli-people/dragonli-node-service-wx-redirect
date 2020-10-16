@@ -5,6 +5,7 @@ const WxRedirectController = require('./WxRedirectController');
 
 const config = new AppConfig();
 const port = process.env.HTTP_PORT || 16001;
+config.setViewFolder('views');
 config.setPort(port);
 config.addRoutesConfig(WxRedirectController);
 

@@ -6,9 +6,9 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js" language="JavaScript"></script>
     <script language="JavaScript">
 
-        var url = '<%=url%>';
+        var url='<%=url%>', link = '<%=link%>';
         console.log('====',wx && typeof wx.config || null);
-        if( url ){
+        if( url && link ){
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: '<%=appId%>', // 必填，公众号的唯一标识
@@ -23,7 +23,7 @@
                     title: '小宝贝竞选',
                     desc: '萌宝大竞选',
                     imgUrl: 'https://project.files.carryforward.cn/image/coolv_vote/2020/09/17/1600328829226-1031307.png',
-                    link: 'http://redirect.wx.carryforward.cn/url?info='+decodeURIComponent('https://p.kutoupiaopt.com/guest/hall/active/0'),
+                    link,
                     success: function (res) {
                         console.log('点击微信分享 =====',res)
                     }
@@ -34,7 +34,8 @@
     </script>
 </head>
 <body>
-<%=url%>
+<div><%=url%></div>
+<div><%=link%></div>
 <form action="/test" method="post">
     <div><input value="" name="url" style="width: 500px;"/></div>
     <div><input type="submit" value="ok"/></div>
