@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js" language="JavaScript"></script>
+    <script language="JavaScript">
+
+        var url = '<%=url%>';
+        console.log('====',wx && typeof wx.config || null);
+        if( url ){
+            wx.config({
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: '<%=appId%>', // 必填，公众号的唯一标识
+                timestamp: '<%=timestamp%>', // 必填，生成签名的时间戳
+                nonceStr: '<%=nonceStr%>', // 必填，生成签名的随机串
+                signature: '<%=signature%>',// 必填，签名
+                jsApiList: ["updateAppMessageShareData"], // 必填，需要使用的JS接口列表
+            });
+
+            wx.ready(function () {
+                wx.updateAppMessageShareData({
+                    title: '小宝贝竞选',
+                    desc: '萌宝大竞选',
+                    imgUrl: 'https://project.files.carryforward.cn/image/coolv_vote/2020/09/17/1600328829226-1031307.png',
+                    link: 'http://redirect.wx.carryforward.cn/url?info='+decodeURIComponent('https://p.kutoupiaopt.com/guest/hall/active/0'),
+                    success: function (res) {
+                        console.log('点击微信分享 =====',res)
+                    }
+                })
+            })
+        }
+
+    </script>
+</head>
+<body>
+<%=url%>
+<form action="/test" method="post">
+    <div><input value="" name="url" style="width: 500px;"/></div>
+    <div><input type="submit" value="ok"/></div>
+</form>
+</body>
+</html>

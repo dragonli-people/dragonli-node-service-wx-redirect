@@ -25,6 +25,8 @@ Crypto.cbcDecrypt = function(dataStr, key, iv) {
 const wx_redirect_proxy_key = process.env.WX_REDIRECT_PROXY_KEY || '0123456789abcdef',
     wx_redirect_proxy_iv = process.env.WX_REDIRECT_PROXY_IV || 'fedcba9876543210';
 const wx_redirect_proxy_host = process.env.WX_REDIRECT_PROXY_HOST || 'http://redirect.wx.carryforward.cn';
+const wxAppId = process.env.WX_APP_ID || 'wx6f2921719a3bc12b',wxSecret = process.env.WX_SECRET || 'adf3a42039bd475d4aed6aa86385218a',
+    wxOfficialAccount = process.env.WX_OFFICIAL_ACCOUNT || 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI4MzYzMjc4Ng==&scene=110#wechat_redirect';
 
 /*
 console.log('http://redirect.wx.carryforward.cn/redirect?info='+encodeURIComponent(Crypto.cbcEncrypt(
@@ -59,10 +61,31 @@ class  WxRedirectController{
         // return {code,id,url}
     }
 
+    async wxSign(){
+        var wxHandler = new WxHandler(wxAppId,wxSecret);
+        return wxHandler.wxSign(this.paras.url);
+    }
+
     async test(){
+        var wxHandler = new WxHandler(wxAppId,wxSecret);
+        var result = this.paras.url && wxHandler.wxSign(this.paras.url) || {appId:'',timestamp:'',nonceStr:'',signature:''};
+        result.appId = wxAppId;
+        result.url = this.paras.url;
+        console.log('===result=',result);
+        return result;
+        // appId: '<%=appId%>', // 必填，公众号的唯一标识
+        //     timestamp: '<%=timestamp%>', // 必填，生成签名的时间戳
+        //     nonceStr: '<%=nonceStr%>', // 必填，生成签名的随机串
+        //     signature: '<%=signature%>',// 必填，签名
+
         var {code,id} = this.paras;
         // console.log('==code==','code:[',code,'],id:[',id,']');
         return {code,id}
+    }
+
+    async url(){
+        this.response.writeHead(302, {'Location': this.paras.info});
+        this.response.end();
     }
 }
 
@@ -70,6 +93,7 @@ module.exports = [
 
     {url:'/redirect',clz:WxRedirectController,method:'wxRedirect'},
     {url:'/callback',clz:WxRedirectController,method:'callback'},
-    {url:'/test',clz:WxRedirectController,method:'test'},
+    {url:'/test',clz:WxRedirectController,method:'test',template:'test.ejs'},
+    {url:'/url',clz:WxRedirectController,method:'url'},
 
 ];

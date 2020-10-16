@@ -14,6 +14,7 @@
   "author": "dragonli-people",
   "license": "Apache License 2.0",
   "dependencies": {
-    "dragonli-node-general-service-core": "0.9.14"
+    "dragonli-node-general-service-core": "0.9.14",
+    "jssha": "^1.5.0"
   }
 }
